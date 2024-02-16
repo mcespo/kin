@@ -1,0 +1,74 @@
+:root {
+    --teal: hsl(182, 71%, 29%);
+    --green: hsl(166, 100%, 22%);
+    --gray: hsl(108, 6%, 34%);
+    --black: hsl(0, 0%, 13%);
+    --white: hsl(0, 0%, 87%);
+}
+
+@font-face {
+    font-display: swap;
+    font-family: "OakesGrotesk-Regular";
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/OakesGrotesk-Regular.woff2") format("woff2");
+}
+
+
+/* -------------- */
+/* baseline reset */
+/* -------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+html {
+    color-scheme: dark light;
+}
+
+body {
+    min-height: 100dvh;
+}
+
+img, picture, svg, video {
+    display: block;
+    max-width: 100%;
+}
+
+input {
+    border: none;
+}
+
+
+/* -------------- */
+body {
+    font-family: "OakesGrotesk-Regular", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    display: grid;
+    grid-auto-flow: row;
+    place-items: center;
+}
+.container {
+    display: grid;
+    grid-auto-flow: row;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+
+    .credit-card-form {
+        display: grid;
+        row-gap: 1rem;
+
+        div {
+            display: grid;
+            row-gap: 0.25rem;
+        }
+    }
+}
+/* -------------- */
