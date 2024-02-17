@@ -10,40 +10,64 @@
     <main id="credit_card_container" class="container">
         <h1>Pay with credit card</h1>
         <aside id="credit_card_banner" class="credit-card-banner">
-
+            <div id="card_display_area" class="card-display-area">
+                <p id="card_number_display">XXXX XXXX XXXX XXXX</p>
+                <p id="name_display">Your Name</p>
+                <div>
+                    <p>Expiry</p>
+                    <p id="expiration_display"></p>
+                </div>
+                <div>
+                    <p>CVV</p>
+                    <p id="verification_display">XXX</p>
+                </div>
+            </div>
+            <img class="credit-card-logo" src="./assets/credit-card-logo.png" aria-hidden="true" alt="Mastercard Logo" />
+            <img class="card-front" src="./assets/credit-card-front.jpg" aria-hidden="true" alt="Front side of credit card" />
+            <img class="card-back" src="./assets/credit-card-back.png" aria-hidden="true" alt="Back side of credit card" />
         </aside>
-        <form id="credit_card_form" class="credit-card-form" method="POST" action="https://scalptrade.test/!/forms/career_application" enctype="multipart/form-data" class="">
-
-            <!-- <input required="" autocomplete="cc-number" id="number" name="number" type="text" inputmode="numeric" pattern="[0-9]*" aria-describedby="error-for-number tooltip-for-number" data-current-field="number" class="input-placeholder-color--lvl-22" placeholder="Card number" aria-invalid="true" style="font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; font-size: 1rem; letter-spacing: normal; line-height: 1.5; color: rgb(0, 0, 0); text-decoration: none; text-transform: none; --placeholder-color: hsl(0, 0%, 44%); padding: calc((-1.5rem + max(2.35714rem, 3.42857rem)) / 2) 0.785714rem; transition: padding 0.2s ease-out 0s;"> -->
+        <form id="credit_card_form" class="credit-card-form" method="POST" action="" enctype="">
 
             <div class="credit-card">
                 <label for="credit_card_number">Credit Card Number</label>
-                <input type="tel" name="credit_card_number" inputmode="numeric" pattern="[0-9\s]{15,20}" placeholder="XXXX XXXX XXXX XXXX" minlength="15" maxlength="20" required>
+                <span class="input-design">
+                    <input name="credit_card_number" type="text" inputmode="numeric" pattern="[0-9\s]{13,19}" placeholder="XXXX XXXX XXXX XXXX" minlength="15" maxlength="20" required>
+                </span>
             </div>
 
             <div class="expiration">
                 <label for="expiration_date">Expiration Date</label>
-                <input type="tel" name="expiration_date" inputmode="numeric" pattern="[0-9]*" placeholder="XX/XX" minlength="4" maxlength="5" required>
+                <span class="input-design">
+                    <input type="text" name="expiration_date" inputmode="numeric" pattern="[0-9]*" placeholder="XX/XX" minlength="4" maxlength="5" required>
+                </span>
             </div>
 
             <div class="verification">
                 <label for="verification_code">CVV</label>
-                <input type="tel" name="verification_code" inputmode="numeric" pattern="[0-9]*" placeholder="XXX" minlength="3" maxlength="4" required>
+                <span class="input-design">
+                    <input type="tel" name="verification_code" inputmode="numeric" pattern="[0-9]*" placeholder="XXX" minlength="3" maxlength="4" required>
+                </span>
             </div>
 
             <div class="first-name">
                 <label for="first_name">Cardholder's First Name</label>
-                <input type="text" name="first_name" placeholder="First name" required>
+                <span class="input-design">
+                    <input type="text" name="first_name" placeholder="First name" required>
+                </span>
             </div>
 
             <div class="last-name">
                 <label for="last_name">Cardholder's Last Name</label>
-                <input type="text" name="last_name" placeholder="Last name" required>
+                <span class="input-design">
+                    <input type="text" name="last_name" placeholder="Last name" required>
+                </span>
             </div>
 
-            <div class="zipcode">
-                <label for="verification_code">Billing Zip Code</label>
-                <input type="tel" name="verification_code" inputmode="numeric" pattern="[0-9]*" placeholder="XXXXXX" minlength="5" maxlength="9" required>
+            <div class="zip-code">
+                <label for="zip_code">Billing Zip Code</label>
+                <span class="input-design">
+                    <input type="tel" name="zip_code" inputmode="numeric" pattern="[0-9]*" placeholder="XXXXXX" minlength="5" maxlength="10" required>
+                </span>
             </div>
 
             <input type="text" style="display: none;" name="honeypot">

@@ -48,8 +48,10 @@ input {
 
 
 /* -------------- */
+/* -------------- */
 body {
-    font-family: "OakesGrotesk-Regular", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     display: grid;
     grid-auto-flow: row;
     place-items: center;
@@ -57,17 +59,109 @@ body {
 .container {
     display: grid;
     grid-auto-flow: row;
-    max-width: 800px;
+    max-width: 50rem; // 800px
     margin: 0 auto;
     width: 100%;
+    padding: 1rem;
+
+    .credit-card-banner {
+        display: grid;
+        place-items: center;
+        .credit-card-logo,
+        .card-front,
+        .card-back,
+        .card-display-area {
+            grid-area: 1/1;
+            pointer-events: none;
+        }
+
+        .card-display-area {
+            z-index: 4;
+            color: var(--white);
+        }
+        .credit-card-logo {
+            z-index: 3;
+            transform: translate(-360%, -286%);
+        }
+        .card-front {
+            z-index: 2;
+            border-radius: 1rem;
+            max-width: 600px;
+        }
+        .card-back {
+            z-index: 1;
+            border-radius: 1rem;
+            transform: translate(10%, -6%);
+            max-width: 600px;
+        }
+    }
 
     .credit-card-form {
         display: grid;
+        grid-auto-flow: row;
+        grid-template-columns: 1fr 1fr;
         row-gap: 1rem;
+        column-gap: 2rem;
 
         div {
+            grid-column: span 2;
             display: grid;
             row-gap: 0.25rem;
+        }
+
+        .expiration,
+        .verification {
+            grid-column: span 1;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--teal);
+        }
+
+        .input-design {
+            position: relative;
+            &::after {
+                border-bottom: 3px solid var(--green);
+                left: 0;
+                bottom: 0;
+                content: "\00a0";
+                position: absolute;
+                right: 0;
+                pointer-events: none;
+                -webkit-transition: border-bottom-color 200ms
+                    cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+                transition: border-bottom-color 200ms
+                    cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            }
+            /* &::active {
+                 &::after {
+                     border-bottom-color: var(--white);
+                 }
+             } */
+        }
+
+        input {
+            box-sizing: content-box;
+            height: 1.4375rem;
+            padding: 4px 0 5px;
+            width: 100%;
+            outline-offset: 0.25rem;
+            outline-color: var(--gray);
+            color: var(--black);
+        }
+
+        button {
+            border: none;
+            color: var(--white);
+            background-color: var(--teal);
+            font-weight: 500;
+            font-size: 1rem;
+            line-height: 1.75;
+            min-width: 5px;
+            padding: 6px 16px;
+            border-radius: 0.25rem;
         }
     }
 }
