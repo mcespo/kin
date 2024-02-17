@@ -16,7 +16,27 @@ const verificationCodeInput = creditCardForm.querySelector('input[name="verifica
 const zipCodeInput = creditCardForm.querySelector('input[name="zip_code"]');
 let sanitizedCreditCardNumber;
 let mergedName;
-const regex = /^\d*\.?\d*$/;
+
+
+const numericInputs = creditCardForm.querySelectorAll("[inputmode='numeric']");
+numericInputs.forEach(input => validateInput(input))
+
+
+function validateInput(el) {
+  el.addEventListener("beforeinput", function (e) {
+    let beforeValue = el.value;
+    e.target.addEventListener(
+      "input",
+      function () {
+        if (el.validity.patternMismatch) {
+          el.value = beforeValue;
+        }
+      },
+      { once: true }
+    );
+  });
+}
+
 
 
 // --------------
@@ -25,12 +45,6 @@ const regex = /^\d*\.?\d*$/;
 const concatenateVariablesWithSymbol = (a, b, symbol) => {
     return a.concat(symbol, b);
 }
-
-const restrictInputToNumbers = (event) => {
-    if (isNaN(event.key) && event.key !== "Backspace") {
-        event.preventDefault();
-    }
-};
 
 
 
@@ -46,8 +60,7 @@ const splitInputsBySymbol = (input, groupValue, symbol) => input.split("").reduc
 // --------------
 
 // restrict characters on credit card and ... TODO: (exp, cvv, zip)
-creditCardNumberInput.onkeydown = restrictInputToNumbers;
-verificationCodeInput.onkeydown = restrictInputToNumbers;
+
 
 
 // set gaps on credit card number input. TODO: Consider an if condition  should I need to change patterns for 15 digit pattern IE: 4_6_5 vs 4_4_4_4
