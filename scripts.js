@@ -37,6 +37,9 @@ function validateInput(el) {
   });
 }
 
+const validateMinLength = (string, lengthVal) => string.length >= lengthVal;
+const validateMaxLength = (string, lengthVal) => string.length <= lengthVal;
+
 const sanitizeString = string => string.replace(/\s/g, '');
 const firstAndLastCharValidator = string => string.charAt(0) === string.at(-1);
 
@@ -100,8 +103,17 @@ verificationCodeInput.addEventListener('keyup', () => {
 creditCardNumberInput.addEventListener('blur', () => {
     const creditCardNumber = sanitizeString(creditCardNumberInput.value);
 
-    console.log(creditCardNumber)
-    console.log(firstAndLastCharValidator(creditCardNumber))
+    if(validateMinLength(creditCardNumber, 15) || validateMinLength(creditCardNumber, 16)) {
+        if(firstAndLastCharValidator(creditCardNumber)) {
+            console.log(`${creditCardNumber} is valid !!!! - with a length of ${creditCardNumber.length} characters, and matching 1st and last digits `);
+        } else {
+            console.log(`${creditCardNumber} is NOT valid without matching 1st and last digits`);
+        }
+    } else {
+        console.log(`${creditCardNumber} is NOT valid due to insufficient credit card values - currently ${creditCardNumber.length} long `);
+    }
+
+    // console.log(firstAndLastCharValidator(creditCardNumber))
 
     // sanitizedCreditCardNumber = Number(creditCardNumberInput.value.replaceAll(' ', ''));
 });
