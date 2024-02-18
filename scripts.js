@@ -37,6 +37,9 @@ function validateInput(el) {
   });
 }
 
+const sanitizeString = string => string.replace(/\s/g, '');
+const firstAndLastCharValidator = string => string.charAt(0) === string.at(-1);
+
 
 
 // --------------
@@ -95,5 +98,10 @@ verificationCodeInput.addEventListener('keyup', () => {
 
 // we want a clean numeric credit card to validate and submit
 creditCardNumberInput.addEventListener('blur', () => {
-    sanitizedCreditCardNumber = Number(creditCardNumberInput.value.replaceAll(' ', ''));
+    const creditCardNumber = sanitizeString(creditCardNumberInput.value);
+
+    console.log(creditCardNumber)
+    console.log(firstAndLastCharValidator(creditCardNumber))
+
+    // sanitizedCreditCardNumber = Number(creditCardNumberInput.value.replaceAll(' ', ''));
 });
