@@ -4,6 +4,16 @@
     --gray: hsl(108, 6%, 34%);
     --black: hsl(0, 0%, 13%);
     --white: hsl(0, 0%, 87%);
+
+    --bg: var(--white);
+    --text: var(--black);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: var(--black);
+        --text: var(--white);
+    }
 }
 
 @font-face {
@@ -59,7 +69,7 @@ body {
 .container {
     display: grid;
     grid-auto-flow: row;
-    max-width: 50rem; // 800px
+    max-width: 50rem; /* 800px */
     margin: 0 auto;
     width: 100%;
     padding: 1rem;
@@ -67,6 +77,7 @@ body {
     .credit-card-banner {
         display: grid;
         place-items: center;
+
         .credit-card-logo,
         .card-front,
         .card-back,
@@ -76,23 +87,30 @@ body {
         }
 
         .card-display-area {
+            max-width: 40rem;
+            justify-self: center;
             z-index: 4;
-            color: var(--white);
+            color: var(--text-inverse);
         }
         .credit-card-logo {
             z-index: 3;
             transform: translate(-360%, -286%);
         }
         .card-front {
+            max-width: 35rem;
+            object-fit: cover;
+            width: 85%;
             z-index: 2;
             border-radius: 1rem;
-            max-width: 600px;
+            transform: translate(-9%, 0%);
         }
         .card-back {
+            max-width: 35rem;
+            object-fit: cover;
+            width: 85%;
             z-index: 1;
             border-radius: 1rem;
             transform: translate(10%, -6%);
-            max-width: 600px;
         }
     }
 
@@ -109,10 +127,10 @@ body {
             row-gap: 0.25rem;
         }
 
-        .expiration,
+        /* .expiration,
         .verification {
             grid-column: span 1;
-        }
+        } */
 
         label {
             font-weight: 600;
@@ -145,11 +163,12 @@ body {
         input {
             box-sizing: content-box;
             height: 1.4375rem;
-            padding: 4px 0 5px;
+            padding: 4px 4px 5px;
             width: 100%;
             outline-offset: 0.25rem;
             outline-color: var(--gray);
-            color: var(--black);
+            color: var(--text);
+            background-color: var(--bg);
         }
 
         button {
@@ -165,4 +184,18 @@ body {
         }
     }
 }
+
+@media screen and (min-width: 48rem) {
+    
+}
+
+/* '3xs': '22.5rem', // 360px
+            '2xs': '25rem', // 400px
+            'xs': '30rem', // 480px
+            'sm': '40rem', // 640px
+            'md': '48rem', // 768px
+            'lg': '64rem', // 1024px
+            'xl': '80rem', // 1280px
+            '2xl': '96rem', // 1536px
+        }, */
 /* -------------- */
