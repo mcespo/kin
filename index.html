@@ -8,18 +8,18 @@
 </head>
 <body>
     <main id="credit_card_container" class="container">
-        <h1>Pay with credit card</h1>
-        <aside id="credit_card_banner" class="credit-card-banner">
+        <h1 class="title">Pay with credit card</h1>
+        <aside aria-hidden="true" id="credit_card_banner" class="credit-card-banner">
             <div id="card_display_area" class="card-display-area">
-                <p id="card_number_display">XXXX XXXX XXXX XXXX</p>
-                <p id="name_display">Your Name</p>
-                <div>
+                <p class="card-number-display" id="card_number_display">XXXX XXXX XXXX XXXX</p>
+                <p class="name-display" id="name_display">Your Name</p>
+                <div class="expiration-display">
                     <p>Expiry</p>
-                    <p id="expiration_display"></p>
+                    <p id="expiration_display">XX/XX</p>
                 </div>
-                <div>
+                <div class="verification-display">
                     <p>CVV</p>
-                    <p id="verification_display">XXX</p>
+                    <p id="verification_display">XXXX</p>
                 </div>
             </div>
             <img class="credit-card-logo" src="./assets/credit-card-logo.png" aria-hidden="true" alt="Mastercard Logo" />
@@ -38,35 +38,35 @@
             <div class="expiration">
                 <label for="expiration_date">Expiration Date</label>
                 <span class="input-design">
-                    <input type="text" id="expiration_date" inputmode="numeric" pattern="[0-9\/]*" placeholder="XX/XX" minlength="4" maxlength="5" required>
+                    <input name="expirationdate" type="text" id="expiration_date" inputmode="numeric" pattern="[0-9\/]*" placeholder="XX/XX" minlength="4" maxlength="5" required>
                 </span>
             </div>
 
             <div class="verification">
                 <label for="verification_code">CVV</label>
                 <span class="input-design">
-                    <input type="tel" id="verification_code" inputmode="numeric" pattern="[0-9]*" placeholder="XXX" minlength="3" maxlength="4" required>
+                    <input name="cvv" type="tel" id="verification_code" inputmode="numeric" pattern="[0-9]*" placeholder="XXX" minlength="3" maxlength="4" required>
                 </span>
             </div>
 
             <div class="first-name">
                 <label for="first_name">Cardholder's First Name</label>
                 <span class="input-design">
-                    <input type="text" id="first_name" placeholder="First name" autocomplete="given-name" required>
+                    <input name="firstname" type="text" id="first_name" placeholder="First name" autocomplete="given-name" required>
                 </span>
             </div>
 
             <div class="last-name">
                 <label for="last_name">Cardholder's Last Name</label>
                 <span class="input-design">
-                    <input type="text" id="last_name" placeholder="Last name" autocomplete="family-name" required>
+                    <input name="lastname" type="text" id="last_name" placeholder="Last name" autocomplete="family-name" required>
                 </span>
             </div>
 
             <div class="zip-code">
                 <label for="zip_code">Billing Zip Code</label>
                 <span class="input-design">
-                    <input type="tel" id="zip_code" inputmode="numeric" pattern="[0-9\-]*" placeholder="XXXXXX" minlength="5" maxlength="10" required>
+                    <input name="zipcode" type="tel" id="zip_code" inputmode="numeric" pattern="[0-9\-]*" placeholder="XXXXXX" minlength="5" maxlength="10" required>
                 </span>
             </div>
 

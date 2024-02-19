@@ -70,50 +70,19 @@ body {
 .container {
     display: grid;
     grid-auto-flow: row;
-    max-width: 50rem; /* 800px */
+    max-width: 48rem; /* 768px */
     margin: 0 auto;
     width: 100%;
     padding: 1rem;
     row-gap: 3rem;
 
+    .title {
+        font-size: 2rem;
+    }
+
     .credit-card-banner {
-        display: grid;
-        place-items: center;
-
-        .credit-card-logo,
-        .card-front,
-        .card-back,
-        .card-display-area {
-            grid-area: 1/1;
-            pointer-events: none;
-        }
-
-        .card-display-area {
-            max-width: 40rem;
-            justify-self: center;
-            z-index: 4;
-            color: var(--white);
-        }
-        .credit-card-logo {
-            z-index: 3;
-            transform: translate(-360%, -286%);
-        }
-        .card-front {
-            max-width: 28rem;
-            object-fit: cover;
-            width: 85%;
-            z-index: 2;
-            border-radius: 1rem;
-            transform: translate(-9%, 0%);
-        }
-        .card-back {
-            max-width: 28rem;
-            object-fit: cover;
-            width: 85%;
-            z-index: 1;
-            border-radius: 1rem;
-            transform: translate(10%, -6%);
-        }
+        display: none;
+        pointer-events: none;
     }
 
     .credit-card-form {
@@ -128,11 +97,6 @@ body {
             display: grid;
             row-gap: 0.25rem;
         }
-
-        /* .expiration,
-        .verification {
-            grid-column: span 1;
-        } */
 
         label {
             font-weight: 600;
@@ -191,6 +155,82 @@ body {
 
 @media screen and (min-width: 30rem) {
     .container {
+        .credit-card-banner {
+            display: grid;
+            place-items: center;
+            width: fit-content;
+            justify-self: center;
+
+            .credit-card-logo,
+            .card-front,
+            .card-back,
+            .card-display-area {
+                grid-area: 1/1;
+                pointer-events: none;
+            }
+
+            .card-display-area {
+                justify-self: center;
+                z-index: 4;
+                color: var(--white);
+            }
+            .credit-card-logo {
+                z-index: 3;
+                height: 2.25rem;
+                transform: translate(-350%, -215%);
+            }
+            .card-front {
+                max-width: 25rem;
+                object-fit: cover;
+                z-index: 2;
+                border-radius: 1rem;
+                transform: translate(-9%, 0%);
+            }
+            .card-back {
+                max-width: 25rem;
+                object-fit: cover;
+                z-index: 1;
+                border-radius: 1rem;
+                transform: translate(10%, -6%);
+            }
+
+            .card-display-area {
+                width: 100%;
+                position: relative;
+
+                .card-number-display,
+                .name-display,
+                .expiration-display,
+                .verification-display {
+                    display: inline-block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    text-transform: uppercase;
+                }
+
+                .card-number-display {
+                    font-size: 1.45rem;
+                    top: -28px;
+                    left: -3%;
+                }
+                .name-display {
+                    font-size: 1.15rem;
+                    top: 65px;
+                    left: -3%;
+                }
+                .expiration-display {
+                    font-size: 1.15rem;
+                    top: 43px;
+                    left: 70%;
+                }
+                .verification-display {
+                    font-size: 1.15rem;
+                    top: 43px;
+                    left: 95%;
+                }
+            }
+        }
         .credit-card-form {
             .expiration,
             .verification {
