@@ -110,23 +110,20 @@ body {
                 border-bottom: 3px solid var(--green);
                 left: 0;
                 bottom: 0;
-                content: "\00a0";
+                content: "";
                 position: absolute;
                 right: 0;
                 pointer-events: none;
-                -webkit-transition: border-bottom-color 200ms
-                    cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-                transition: border-bottom-color 200ms
-                    cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+                transition: border-bottom-color 250ms ease-in-out;
             }
-            /* &::active {
-                 &::after {
-                     border-bottom-color: var(--white);
-                 }
-             } */
+        }
+        .input-design:has(> input:focus) {
+            &::after {
+                border-color: var(--teal);
+            }
         }
 
-        input {
+        input { 
             box-sizing: content-box;
             height: 1.4375rem;
             padding: 4px 4px 5px;
@@ -147,6 +144,11 @@ body {
             min-width: 5px;
             padding: 6px 16px;
             border-radius: 0.25rem;
+            transition: background-color 250ms ease-in-out;
+            &:hover {
+                cursor: pointer;
+                background-color: var(--green);
+            }
         }
     }
 }
@@ -160,6 +162,9 @@ body {
             place-items: center;
             width: fit-content;
             justify-self: center;
+
+            transform: translateY(-10%);
+            animation: fade-in-from-top 300ms ease-in-out forwards;
 
             .credit-card-logo,
             .card-front,
@@ -240,6 +245,9 @@ body {
             }
         }
         .credit-card-form {
+            transform: translateY(-10%);
+            animation: fade-in-from-bottom 350ms ease-in-out forwards;
+
             .expiration,
             .verification {
                 grid-column: span 1;
@@ -253,7 +261,6 @@ body {
         row-gap: 6rem;
         .credit-card-form {
             grid-template-columns: repeat(12, 1fr);
-            /* grid-template-columns: repeat(12, minmax(7.5rem, 1fr)); */
 
             column-gap: 1rem;
             .credit-card {
@@ -281,13 +288,25 @@ body {
     }
 }
 
-/* '3xs': '22.5rem', // 360px
-            '2xs': '25rem', // 400px
-            'xs': '30rem', // 480px
-            'sm': '40rem', // 640px
-            'md': '48rem', // 768px
-            'lg': '64rem', // 1024px
-            'xl': '80rem', // 1280px
-            '2xl': '96rem', // 1536px
-        }, */
-/* -------------- */
+@keyframes fade-in-from-top {
+    0% {
+        transform: translateY(-10%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-from-bottom {
+    0% {
+        transform: translateY(10%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
