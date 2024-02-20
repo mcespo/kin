@@ -70,7 +70,7 @@ body {
 .container {
     display: grid;
     grid-auto-flow: row;
-    max-width: 48rem; /* 768px */
+    max-width: 40rem; /* 640px */
     margin: 0 auto;
     width: 100%;
     padding: 1rem;
@@ -89,7 +89,7 @@ body {
         display: grid;
         grid-auto-flow: row;
         grid-template-columns: 1fr 1fr;
-        row-gap: 1rem;
+        row-gap: 2rem;
         column-gap: 2rem;
 
         div {
@@ -176,22 +176,22 @@ body {
             }
             .credit-card-logo {
                 z-index: 3;
-                height: 2.25rem;
-                transform: translate(-350%, -215%);
+                height: 2rem;
+                transform: translate(-440%, -220%);
             }
             .card-front {
-                max-width: 25rem;
+                max-width: 22rem;
                 object-fit: cover;
                 z-index: 2;
                 border-radius: 1rem;
-                transform: translate(-9%, 0%);
+                transform: translate(-22%, 0%);
             }
             .card-back {
-                max-width: 25rem;
+                max-width: 22rem;
                 object-fit: cover;
                 z-index: 1;
                 border-radius: 1rem;
-                transform: translate(10%, -6%);
+                transform: translate(0%, -6%);
             }
 
             .card-display-area {
@@ -211,23 +211,31 @@ body {
 
                 .card-number-display {
                     font-size: 1.45rem;
-                    top: -28px;
-                    left: -3%;
+                    top: -25px;
+                    left: -16%;
                 }
                 .name-display {
-                    font-size: 1.15rem;
-                    top: 65px;
-                    left: -3%;
+                    font-size: 1rem;
+                    top: 60px;
+                    left: -16%;
                 }
                 .expiration-display {
-                    font-size: 1.15rem;
-                    top: 43px;
-                    left: 70%;
+                    font-size: 1rem;
+                    top: 38px;
+                    left: 54%;
+                    .expiration-title {
+                        font-size: 0.75rem;
+                        line-height: 1.4rem;
+                    }
                 }
                 .verification-display {
-                    font-size: 1.15rem;
-                    top: 43px;
-                    left: 95%;
+                    font-size: 1rem;
+                    top: 38px;
+                    left: 81%;
+                    .verification-title {
+                        font-size: 0.75rem;
+                        line-height: 1.4rem;
+                    }
                 }
             }
         }
