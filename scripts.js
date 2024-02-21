@@ -133,10 +133,6 @@ lastNameInput.addEventListener('blur', () => {
 zipCodeInput.addEventListener('focus', () => {
     errorMessageClear(zipCodeInput);
 });
-zipCodeInput.addEventListener('keyup', () => {
-
-    // zipCodeInput.value = splitInputsBySymbol(zipCodeInput.value.replaceAll('-', ''), 5, '-');
-});
 zipCodeInput.addEventListener('blur', () => {
     if(zipCodeInput === undefined || zipCodeInput.value.length < 1) {
         return;
