@@ -36,7 +36,8 @@ const isInputExpiryValid = (input, year) => {
     const numericYear = Number(inputYear);
 
     if(numericMonth <= 12 && numericYear > 0) {
-        const inputExpiryDate = new Date(`20${inputYear}-${inputMonth}-01`);
+        const addOneMonth = (numericMonth !== 12) ? numericMonth + 1 : 12;
+        const inputExpiryDate = new Date(`20${inputYear}-${addOneMonth.toString()}-01`);
 
         if (numericYear <= numericYear+year && inputExpiryDate > today) {
             return true;
@@ -58,7 +59,6 @@ const isInputLuhnValid = input => {
     const reversedNumericString = numericString.split('').reverse().join('');
     const splitStringValuesAsArray = Array.from(reversedNumericString).map(Number);
     let total = 0;
-
 
     for(let i = 0; i < splitStringValuesAsArray.length; i++) {
         if(i % 2 !== 0) {

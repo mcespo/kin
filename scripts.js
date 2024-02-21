@@ -1,15 +1,22 @@
 import { splitInputValuesBySymbol, concatenateVariablesWithSymbol, inputModeValidation, errorMessageClear } from "./js/inputManipulation.js";
 import { processCreditCardInput, processCardExpirationInput, processCardVerificationInput, processZipCodeInput } from "./js/formValidation.js";
+
+
 // --------------
 // Variables
 // --------------
 const creditCardContainer = document.querySelector('#credit_card_container');
+
+// credit card banner variables
 const creditCardBanner = creditCardContainer.querySelector('#credit_card_banner');
 const cardDisplay = creditCardBanner.querySelector('#card_number_display');
 const nameDisplay = creditCardBanner.querySelector('#name_display');
 const expirationDisplay = creditCardBanner.querySelector('#expiration_display');
 const verificationDisplay = creditCardBanner.querySelector('#verification_display');
+
+// form variables
 const creditCardForm = creditCardContainer.querySelector('#credit_card_form');
+const numericInputs = creditCardForm.querySelectorAll('[inputmode="numeric"]');
 const creditCardNumberInput = creditCardForm.querySelector('#credit_card_number');
 const firstNameInput = creditCardForm.querySelector('#first_name');
 const lastNameInput = creditCardForm.querySelector('#last_name');
@@ -17,6 +24,8 @@ const expirationDateInput = creditCardForm.querySelector('#expiration_date');
 const verificationCodeInput = creditCardForm.querySelector('#verification_code');
 const zipCodeInput = creditCardForm.querySelector('#zip_code');
 const submitButton = creditCardForm.querySelector('#submit');
+
+// loose conditions
 let mergedName;
 let isValidCardNumber = false;
 let isValidExpiration = false;
@@ -24,11 +33,9 @@ let isValidVerification = false;
 let isValidFirstName = false;
 let isValidLastName = false;
 let isValidZip = false;
-const numericInputs = creditCardForm.querySelectorAll('[inputmode="numeric"]');
-
-numericInputs.forEach(input => inputModeValidation(input))
 
 
+// validator to enable form submit when all conditions met
 const submitValidator = () => {
     if(isValidCardNumber && isValidExpiration && isValidVerification && isValidFirstName && isValidLastName && isValidZip) {
         if(!submitButton.hasAttribute('disabled')) {
@@ -42,11 +49,13 @@ const submitValidator = () => {
     return submitButton.setAttribute('disabled', '');
 }
 
-// 4821630149417944
 
 // --------------
 // Events
 // --------------
+
+// force all inputs to respect numeric patterns
+numericInputs.forEach(input => inputModeValidation(input));
 
 
 // credit card events
@@ -144,22 +153,7 @@ zipCodeInput.addEventListener('blur', () => {
 });
 
 
-
-
-
-// we want a clean numeric credit card to validate and submit
-
-
-
-
-
-
-
-
-
-
-
-
+// submit form
 creditCardForm.addEventListener('submit', event => {
     // not looking to be redirected
     event.preventDefault();
