@@ -47,13 +47,15 @@ const errorMessageClear = element => {
 }
 
 const errorMessageDisplay = (element, errorMessage) => {
-    const siblingElement = (element.nextElementSibling.className === 'error') ? element.nextElementSibling : null;
+    if(element.nextElementSibling !== undefined) {
+        const siblingElement = (element.nextElementSibling.className === 'error') ? element.nextElementSibling : null;
 
-    if(siblingElement !== null) {
-        if(siblingElement.style.display === 'block') return;
+        if(siblingElement !== null) {
+            if(siblingElement.style.display === 'block') return;
 
-        siblingElement.innerText = errorMessage;
-        siblingElement.style.display = 'block';
+            siblingElement.innerText = errorMessage;
+            siblingElement.style.display = 'block';
+        }
     }
     return;
 }

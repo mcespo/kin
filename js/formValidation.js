@@ -21,14 +21,17 @@ const isInputMinMaxLengthValid = (input, minLength, maxLength) => {
 }
 
 const isInputFirstAndLastCharMatching = input => {
-    if(input.value.charAt(0) === input.value.at(-1)) return true;
+    const inputValue = (input.value !== undefined) ? sanitizeInputValue(input.value) : sanitizeInputValue(input);
 
-    errorMessageDisplay(input, `First and last character "${input.value.charAt(0)}" & "${input.value.at(-1)}" must match.`);
+    if(inputValue.charAt(0) === inputValue.at(-1)) return true;
+
+    errorMessageDisplay(input, `First and last character "${inputValue.charAt(0)}" & "${inputValue.at(-1)}" must match.`);
     return false;
 }
 
 const isInputExpiryValid = (input, year) => {
-    const inputValue = sanitizeInputValue(input.value);
+    const inputValue = (input.value !== undefined) ? sanitizeInputValue(input.value) : sanitizeInputValue(input);
+
     const today = new Date();
     const inputMonth = inputValue.slice(0, 2);
     const numericMonth = Number(inputMonth);
@@ -55,8 +58,8 @@ const isInputExpiryValid = (input, year) => {
 
 
 const isInputLuhnValid = input => {
-    const numericString = sanitizeInputValue(input.value);
-    const reversedNumericString = numericString.split('').reverse().join('');
+    const inputValue = (input.value !== undefined) ? sanitizeInputValue(input.value) : sanitizeInputValue(input);
+    const reversedNumericString = inputValue.split('').reverse().join('');
     const splitStringValuesAsArray = Array.from(reversedNumericString).map(Number);
     let total = 0;
 
