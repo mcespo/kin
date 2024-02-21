@@ -40,6 +40,8 @@ const errorMessageClear = element => {
     if(siblingElement !== null) {
         if(siblingElement.style.display === 'none') return;
 
+        removeElementAttribute(element, 'aria-errormessage');
+        removeElementAttribute(element, 'aria-invalid');
         siblingElement.style.display = 'none';
         siblingElement.innerText = '';
     }
@@ -53,11 +55,33 @@ const errorMessageDisplay = (element, errorMessage) => {
         if(siblingElement !== null) {
             if(siblingElement.style.display === 'block') return;
 
+
+            insertElementAttribute(element, 'aria-errormessage', `error_${element.getAttribute('id')}`);
+            insertElementAttribute(element, 'aria-invalid', 'true');
             siblingElement.innerText = errorMessage;
             siblingElement.style.display = 'block';
         }
     }
     return;
+}
+
+/**
+* Add data attribute to HTML element.
+* @param {object} element we wish to modify.
+* @param {string} attribute we wish to add.
+*/
+const insertElementAttribute = (element, attribute, attributeValue) => {
+    return element.setAttribute(attribute, attributeValue);
+}
+
+/**
+* Remove data attribute from HTML element.
+* @param {object} element we wish to modify.
+* @param {string} attribute we are removing
+* @return {undefined} removed attribute
+*/
+const removeElementAttribute = (element, attribute) => {
+    return element.removeAttribute(attribute);
 }
 
 export { sanitizeInputValue, concatenateVariablesWithSymbol, splitInputValuesBySymbol, inputModeValidation, errorMessageDisplay, errorMessageClear };

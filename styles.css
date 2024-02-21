@@ -131,6 +131,12 @@ body {
             }
         }
 
+        .input-design:has(> .error:not(:empty)) {
+            &::after {
+                border-color: var(--red);
+            }
+        }
+
         input {
             box-sizing: content-box;
             height: 1.4375rem;
@@ -144,6 +150,7 @@ body {
 
         #submit {
             &:disabled {
+                opacity: 0.65;
                 background-color: var(--gray);
             }
             border: none;
