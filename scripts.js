@@ -1,3 +1,5 @@
+import { splitInputValuesBySymbol, concatenateVariablesWithSymbol, inputModeValidation, errorMessageClear } from "./js/inputManipulation.js";
+import { processCreditCardInput, processCardExpirationInput, processCardVerificationInput, processZipCodeInput } from "./js/formValidation.js";
 // --------------
 // Variables
 // --------------
@@ -14,160 +16,153 @@ const lastNameInput = creditCardForm.querySelector('#last_name');
 const expirationDateInput = creditCardForm.querySelector('#expiration_date');
 const verificationCodeInput = creditCardForm.querySelector('#verification_code');
 const zipCodeInput = creditCardForm.querySelector('#zip_code');
-let sanitizedCreditCardNumber;
+const submitButton = creditCardForm.querySelector('#submit');
 let mergedName;
-let isValidCard = false;
+let isValidCardNumber = false;
+let isValidExpiration = false;
+let isValidVerification = false;
+let isValidFirstName = false;
+let isValidLastName = false;
+let isValidZip = false;
+const numericInputs = creditCardForm.querySelectorAll('[inputmode="numeric"]');
+
+numericInputs.forEach(input => inputModeValidation(input))
 
 
-const numericInputs = creditCardForm.querySelectorAll("[inputmode='numeric']");
-numericInputs.forEach(input => validateInput(input))
-
-
-function validateInput(el) {
-  el.addEventListener("beforeinput", function (e) {
-    let beforeValue = el.value;
-    e.target.addEventListener(
-      "input",
-      function () {
-        if (el.validity.patternMismatch) {
-          el.value = beforeValue;
+const submitValidator = () => {
+    if(isValidCardNumber && isValidExpiration && isValidVerification && isValidFirstName && isValidLastName && isValidZip) {
+        if(!submitButton.hasAttribute('disabled')) {
+            return;
         }
-      },
-      { once: true }
-    );
-  });
-}
-
-const validateMinLength = (string, lengthVal) => string.length >= lengthVal;
-const validateMaxLength = (string, lengthVal) => string.length <= lengthVal;
-
-const sanitizeString = string => string.replace(/[^\w]/g, '');
-const isFirstAndLastCharMatching = string => string.charAt(0) === string.at(-1);
-
-
-
-// --------------
-// Generic functions
-// --------------
-const concatenateVariablesWithSymbol = (a, b, symbol) => {
-    return a.concat(symbol, b);
-}
-
-
-
-const splitInputsBySymbol = (input, groupValue, symbol) => input.split("").reduce((value, next, index) => {
-    if (index !== 0 && !(index % groupValue)) value += symbol;
-    return value + next;
-}, "");
-
-const isExpiryValid = string => {
-    const today = new Date();
-    const possibleDate = sanitizeString(string);
-    const month = possibleDate.slice(0, 2);
-    const year = possibleDate.slice(-2);
-
-    if(Number(month) <= 12 && Number(year < 40)) {
-        const expiryDate = new Date(`20${year}-${month}-01`);
-
-        if (expiryDate < today) {
-            console.log('fail')
-        } else {
-            console.log('pass')
-        }
-    } else {
-        console.log('nope');
+        return submitButton.removeAttribute('disabled');
     }
-
+    if(submitButton.hasAttribute('disabled')) {
+        return;
+    }
+    return submitButton.setAttribute('disabled', '');
 }
 
-
+// 4821630149417944
 
 // --------------
 // Events
 // --------------
 
-// restrict characters on credit card and ... TODO: (exp, cvv, zip)
 
-
-
-// set gaps on credit card number input. TODO: Consider an if condition  should I need to change patterns for 15 digit pattern IE: 4_6_5 vs 4_4_4_4
+// credit card events
+creditCardNumberInput.addEventListener('focus', () => {
+    errorMessageClear(creditCardNumberInput);
+});
 creditCardNumberInput.addEventListener('keyup', () => {
-    creditCardNumberInput.value = splitInputsBySymbol(creditCardNumberInput.value.replaceAll(' ', ''), 4 , ' ');
-    cardDisplay.innerText = cardDisplay.innerText.length === 0 ? 'XXXX XXXX XXXX XXXX' : creditCardNumberInput.value;
+    cardDisplay.innerText = (creditCardNumberInput.value.length === 0) ? 'XXXX XXXX XXXX XXXX' : creditCardNumberInput.value;
+});
+creditCardNumberInput.addEventListener('blur', () => {
+    if(creditCardNumberInput === undefined || creditCardNumberInput.value.length < 1) {
+        return;
+    }
+    isValidCardNumber = processCreditCardInput(creditCardNumberInput);
+
+    creditCardNumberInput.value = splitInputValuesBySymbol(creditCardNumberInput.value, 4, ' ');
+    cardDisplay.innerText = (creditCardNumberInput.value.length === 0) ? 'XXXX XXXX XXXX XXXX' : creditCardNumberInput.value;
+    submitValidator();
 });
 
+
+// expiry events
+expirationDateInput.addEventListener('focus', () => {
+    errorMessageClear(expirationDateInput);
+});
+expirationDateInput.addEventListener('keyup', () => {
+    expirationDisplay.innerText = (expirationDateInput.value.length === 0) ? 'XX/XX' : expirationDateInput.value;
+});
+expirationDateInput.addEventListener('blur', () => {
+    if(expirationDateInput === undefined || expirationDateInput.value.length < 1) {
+        return;
+    }
+    isValidExpiration = processCardExpirationInput(expirationDateInput);
+
+    expirationDateInput.value = splitInputValuesBySymbol(expirationDateInput.value, 2, '/');
+    expirationDisplay.innerText = (expirationDateInput.value.length === 0) ? 'XX/XX' : expirationDateInput.value;
+    submitValidator();
+});
+
+
+// CVV events
+verificationCodeInput.addEventListener('focus', () => {
+    errorMessageClear(verificationCodeInput);
+});
+verificationCodeInput.addEventListener('keyup', () => {
+    verificationDisplay.innerText = verificationCodeInput.value;
+});
+verificationCodeInput.addEventListener('blur', () => {
+    if(verificationCodeInput === undefined || verificationCodeInput.value.length < 1) {
+        return;
+    }
+    isValidVerification = processCardVerificationInput(verificationCodeInput);
+    submitValidator();
+});
+
+
+// first and last name events
 firstNameInput.addEventListener('keyup', () => {
     mergedName = concatenateVariablesWithSymbol(firstNameInput.value, lastNameInput.value, " ");
-    nameDisplay.innerText = nameDisplay.innerText.length === 0 ? 'XXXX XXXX XXXX XXXX' : mergedName;
+    nameDisplay.innerText = nameDisplay.innerText.length === 0 ? 'Your Name' : mergedName;
+});
+firstNameInput.addEventListener('blur', () => {
+    if(firstNameInput === undefined || firstNameInput.value.length < 1) {
+        return;
+    }
+    isValidFirstName = true;
+    submitValidator()
 });
 
 lastNameInput.addEventListener('keyup', () => {
     mergedName = concatenateVariablesWithSymbol(firstNameInput.value, lastNameInput.value, " ");
-    nameDisplay.innerText = nameDisplay.innerText.length === 0 ? 'XXXX XXXX XXXX XXXX' : mergedName;
+    nameDisplay.innerText = nameDisplay.innerText.length === 0 ? '' : mergedName;
+});
+lastNameInput.addEventListener('blur', () => {
+    if(lastNameInput === undefined || lastNameInput.value.length < 1) {
+        return;
+    }
+    isValidLastName = true;
+    submitValidator();
 });
 
+
+// zipcode events
+zipCodeInput.addEventListener('focus', () => {
+    errorMessageClear(zipCodeInput);
+});
 zipCodeInput.addEventListener('keyup', () => {
-    zipCodeInput.value = splitInputsBySymbol(zipCodeInput.value.replaceAll('-', ''), 5, '-');
+
+    // zipCodeInput.value = splitInputsBySymbol(zipCodeInput.value.replaceAll('-', ''), 5, '-');
 });
-
-expirationDateInput.addEventListener('keyup', () => {
-    expirationDateInput.value = splitInputsBySymbol(expirationDateInput.value.replaceAll('/', ''), 2, '/');
-    expirationDisplay.innerText = expirationDateInput.value;
-});
-
-verificationCodeInput.addEventListener('keyup', () => {
-    verificationDisplay.innerText = verificationCodeInput.value;
-});
-
-
-const isLuhnValid = numericString => {
-    const reversedNumericString = numericString.split('').reverse().join('');
-    const splitStringValuesAsArray = Array.from(reversedNumericString).map(Number);
-    let total = 0;
-
-
-    for(let i = 0; i < splitStringValuesAsArray.length; i++) {
-        if(i % 2 !== 0) {
-            let doubledValue = splitStringValuesAsArray[i] * 2;
-            if(doubledValue > 9) {
-                total += doubledValue - 9;
-            } else {
-                total += doubledValue;
-            }
-        } else {
-            total += splitStringValuesAsArray[i];
-        }
+zipCodeInput.addEventListener('blur', () => {
+    if(zipCodeInput === undefined || zipCodeInput.value.length < 1) {
+        return;
     }
-    console.log(`after calculation, card is = ${total}`)
-    if(total % 10 === 0) {
-        return true;
-    }
-    return false;
-}
+    isValidZip = processZipCodeInput(zipCodeInput);
+
+    zipCodeInput.value = splitInputValuesBySymbol(zipCodeInput.value, 5, '-');
+    submitValidator();
+});
+
+
+
 
 
 // we want a clean numeric credit card to validate and submit
-expirationDateInput.addEventListener('blur', () => {
-    isExpiryValid(expirationDateInput.value);
-});
-
-creditCardNumberInput.addEventListener('blur', () => {
-    const creditCardNumber = sanitizeString(creditCardNumberInput.value);
-
-    if(validateMinLength(creditCardNumber, 15) || validateMinLength(creditCardNumber, 16)){
-        if(isLuhnValid(creditCardNumber)) {
-            console.log(`YOU SHALL PASSSSS!`)
-            return isValidCard = true;
-        }
 
 
-        // if(isFirstAndLastCharMatching(creditCardNumber) && isLuhnValid(creditCardNumber)) {
-        //     console.log(`YOU SHALL PASSSSS!`)
-        //     return isValidCard = true;
-        // }
 
-    }
-});
+
+
+
+
+
+
+
+
 
 creditCardForm.addEventListener('submit', event => {
     // not looking to be redirected
@@ -176,7 +171,6 @@ creditCardForm.addEventListener('submit', event => {
     const formData = new FormData(creditCardForm);
     const data = Object.fromEntries(formData);
 
-    // console.log(formData.get('creditcardnumber'))
 
     fetch('https://jsonplaceholder.typicode.com/posts', {
         method: 'POST',

@@ -32,6 +32,7 @@
                 <label for="credit_card_number">Credit Card Number</label>
                 <span class="input-design">
                     <input name="creditcardnumber" id="credit_card_number" type="text" inputmode="numeric" pattern="[0-9\s]*" placeholder="XXXX XXXX XXXX XXXX" minlength="15" maxlength="19" required>
+                    <p class="error"></p>
                 </span>
             </div>
 
@@ -39,6 +40,7 @@
                 <label for="expiration_date">Expiration Date</label>
                 <span class="input-design">
                     <input name="expirationdate" type="text" id="expiration_date" inputmode="numeric" pattern="[0-9\/]*" placeholder="XX/XX" minlength="4" maxlength="5" required>
+                    <p class="error"></p>
                 </span>
             </div>
 
@@ -46,6 +48,7 @@
                 <label for="verification_code">CVV</label>
                 <span class="input-design">
                     <input name="cvv" type="tel" id="verification_code" inputmode="numeric" pattern="[0-9]*" placeholder="XXX" minlength="3" maxlength="4" required>
+                    <p class="error"></p>
                 </span>
             </div>
 
@@ -53,6 +56,7 @@
                 <label for="first_name">Cardholder's First Name</label>
                 <span class="input-design">
                     <input name="firstname" type="text" id="first_name" placeholder="First name" autocomplete="given-name" required>
+                    <p class="error"></p>
                 </span>
             </div>
 
@@ -60,6 +64,7 @@
                 <label for="last_name">Cardholder's Last Name</label>
                 <span class="input-design">
                     <input name="lastname" type="text" id="last_name" placeholder="Last name" autocomplete="family-name" required>
+                    <p class="error"></p>
                 </span>
             </div>
 
@@ -67,15 +72,16 @@
                 <label for="zip_code">Billing Zip Code</label>
                 <span class="input-design">
                     <input name="zipcode" type="tel" id="zip_code" inputmode="numeric" pattern="[0-9\-]*" placeholder="XXXXXX" minlength="5" maxlength="10" required>
+                    <p class="error"></p>
                 </span>
             </div>
 
-            <button type="submit">
+            <button id="submit" disabled type="submit">
                 Submit
             </button>
 
         </form>
     </main>
-    <script src="./scripts.js"></script>
+    <script type="module" src="./scripts.js"></script>
 </body>
 </html>
