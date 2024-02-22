@@ -74,7 +74,7 @@ body {
     max-width: 40rem; /* 640px */
     margin: 0 auto;
     width: 100%;
-    padding: 1rem;
+    padding: 1.25rem;
     row-gap: 3rem;
 
     .title {
@@ -178,14 +178,13 @@ body {
 
 
 
-@media screen and (min-width: 30rem) {
+@media screen and (min-width: 23rem) {
     .container {
         .credit-card-banner {
             display: grid;
             place-items: center;
             width: fit-content;
             justify-self: center;
-
             transform: translateY(-10%);
             animation: fade-in-from-top 300ms ease-in-out forwards;
 
@@ -205,21 +204,18 @@ body {
             .credit-card-logo {
                 z-index: 3;
                 height: 2rem;
-                transform: translate(-440%, -220%);
+                transform: translate(-285%, -220%);
             }
             .card-front {
+                width: 100%;
                 max-width: 22rem;
                 object-fit: cover;
                 z-index: 2;
                 border-radius: 1rem;
-                transform: translate(-22%, 0%);
+                transform: translate(0%, 0%);
             }
             .card-back {
-                max-width: 22rem;
-                object-fit: cover;
-                z-index: 1;
-                border-radius: 1rem;
-                transform: translate(0%, -6%);
+                display: none;
             }
 
             .card-display-area {
@@ -239,18 +235,18 @@ body {
 
                 .card-number-display {
                     font-size: 1.45rem;
-                    top: -25px;
-                    left: -16%;
+                    top: -38px;
+                    left: 6%;
                 }
                 .name-display {
                     font-size: 1rem;
-                    top: 60px;
-                    left: -16%;
+                    top: 2px;
+                    left: 6%;
                 }
                 .expiration-display {
                     font-size: 1rem;
                     top: 38px;
-                    left: 54%;
+                    left: 60%;
                     .expiration-title {
                         font-size: 0.75rem;
                         line-height: 1.4rem;
@@ -279,12 +275,92 @@ body {
     }
 }
 
+@media screen and (min-width: 30rem) {
+    .container {
+        .credit-card-banner {
+            .credit-card-logo {
+                transform: translate(-370%, -220%);
+            }
+            .card-front {
+                transform: translate(-12%, 0%);
+            }
+            .card-back {
+                display: block;
+                max-width: 22rem;
+                object-fit: cover;
+                z-index: 1;
+                border-radius: 1rem;
+                transform: translate(12%, -6%);
+            }
+            .card-display-area {
+                .card-number-display {
+                    top: -25px;
+                    left: -6%;
+                }
+                .name-display {
+                    top: 57px;
+                    left: -6%;
+                }
+                .expiration-display {
+                    top: 35px;
+                    left: 68%;
+                }
+                .verification-display {
+                    top: 35px;
+                    left: 92%;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 36rem) {
+    .container {
+        .credit-card-banner {
+            transform: translateY(-10%);
+            .credit-card-logo {
+                transform: translate(-440%, -220%);
+            }
+            .card-front {
+                transform: translate(-22%, 0%);
+            }
+            .card-back {
+                transform: translate(0%, -6%);
+            }
+
+            .card-display-area {
+                .card-number-display {
+                    left: -16%;
+                }
+                .name-display {
+                    top: 60px;
+                    left: -16%;
+                }
+                .expiration-display {
+                    top: 38px;
+                    left: 54%;
+                    .expiration-title {
+                        font-size: 0.75rem;
+                        line-height: 1.4rem;
+                    }
+                }
+                .verification-display {
+                    top: 38px;
+                    left: 81%;
+                    .verification-title {
+                        font-size: 0.75rem;
+                        line-height: 1.4rem;
+                    }
+                }
+            }
+        }
+    }
+}
 @media screen and (min-width: 48rem) {
     .container {
         row-gap: 6rem;
         .credit-card-form {
             grid-template-columns: repeat(12, 1fr);
-
             column-gap: 1rem;
             .credit-card {
                 grid-column: span 6;

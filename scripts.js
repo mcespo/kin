@@ -101,6 +101,7 @@ verificationCodeInput.addEventListener('focus', () => {
     errorMessageClear(verificationCodeInput);
 });
 verificationCodeInput.addEventListener('keyup', () => {
+    verificationCodeInput.innerText = (verificationCodeInput.value.length === 0) ? 'XXX' : verificationDisplay.value;
     verificationDisplay.innerText = verificationCodeInput.value;
 });
 verificationCodeInput.addEventListener('blur', () => {
@@ -108,6 +109,7 @@ verificationCodeInput.addEventListener('blur', () => {
         return;
     }
     isValidVerification = processCardVerificationInput(verificationCodeInput);
+    verificationCodeInput.innerText = (verificationCodeInput.value.length === 0) ? 'XXX' : verificationDisplay.value;
     submitValidator();
 });
 
