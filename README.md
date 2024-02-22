@@ -2,7 +2,9 @@
 
 ## About the exam
 
-Hello, I have created an HTML index page, styles page, and javascript files to complete the Kin Frontend exam. The output is a simple HTML page that is meant to submit a fake form.
+Hello, I have created an HTML index page, styles page, and javascript files to complete the Kin Frontend exam. The output is a simple HTML page that is meant to submit a fake form. I will also post a recording of this walkthrough should you wish to have a visual component to the work.
+
+[Kin video walkthrough](https://www.loom.com/share/684e7f59c75843c7abd1c9fe9a83f5ad?sid=26218f96-e9c0-4177-b1b4-f3afaa12731c)
 
 ### How to access
 
