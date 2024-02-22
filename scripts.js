@@ -101,15 +101,15 @@ verificationCodeInput.addEventListener('focus', () => {
     errorMessageClear(verificationCodeInput);
 });
 verificationCodeInput.addEventListener('keyup', () => {
-    verificationCodeInput.innerText = (verificationCodeInput.value.length === 0) ? 'XXX' : verificationDisplay.value;
-    verificationDisplay.innerText = verificationCodeInput.value;
+    verificationDisplay.innerText = (verificationCodeInput.value.length === 0) ? 'XXX' : verificationCodeInput.value;
 });
 verificationCodeInput.addEventListener('blur', () => {
     if(verificationCodeInput === undefined || verificationCodeInput.value.length < 1) {
         return;
     }
     isValidVerification = processCardVerificationInput(verificationCodeInput);
-    verificationCodeInput.innerText = (verificationCodeInput.value.length === 0) ? 'XXX' : verificationDisplay.value;
+
+    verificationDisplay.innerText = (verificationCodeInput.value.length === 0) ? 'XXX' : verificationCodeInput.value;
     submitValidator();
 });
 

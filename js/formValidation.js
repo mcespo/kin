@@ -6,7 +6,14 @@ import { sanitizeInputValue, errorMessageDisplay } from "./inputManipulation.js"
 * @param {number} lengthVal - numeric value of minimum string length.
 * @return {boolean} return true/false if requirment is met.
 */
-const isInputMinLengthValid = (input, lengthVal) => input.length >= lengthVal;
+const isInputMinLengthValid = (input, lengthVal) => {
+    if(input.length >= lengthVal) {
+        return true;
+    }
+
+    errorMessageDisplay(input, `Must be at least ${lengthVal} characters long.`);
+    return false;
+};
 
 /**
 * Ensure the minimum and maximum length of given string meet the requirements.
@@ -14,18 +21,25 @@ const isInputMinLengthValid = (input, lengthVal) => input.length >= lengthVal;
 * @param {number} lengthVal - numeric value of maximum string length.
 * @return {boolean} return true/false if requirment is met.
 */
-const isInputMaxLengthValid = (input, lengthVal) => input.length <= lengthVal;
+const isInputMaxLengthValid = (input, lengthVal) => {
+    if(input.length <= lengthVal) {
+        return true;
+    }
+
+    errorMessageDisplay(input, `Must not be greater than ${lengthVal} characters long.`);
+    return false;
+};
 
 
 /**
 * Ensure the minimum and maximum length of given string meet the requirements.
-* @param {object} input - HTML input we wish to verify.
+* @param {object || string} input - either the HTML input element OR the input value itself we wish to verify.
 * @param {number} minLength - numeric value of minimum string length.
 * @param {number} maxLength - numeric value of maximum string length.
 * @return {boolean} return true/false if requirment is met.
 */
 const isInputMinMaxLengthValid = (input, minLength, maxLength) => {
-    const inputValue = sanitizeInputValue(input.value);
+    const inputValue = (input.value !== undefined) ? sanitizeInputValue(input.value) : sanitizeInputValue(input);
 
     if (isInputMinLengthValid(inputValue, minLength) && isInputMaxLengthValid(inputValue, maxLength)) {
         return true;
@@ -159,8 +173,8 @@ const processCardExpirationInput = expirationNumberInput => {
 const processCardVerificationInput = verificationInput => {
     if(isInputMinMaxLengthValid(verificationInput, 3, 4)) {
         return true;
-    };
-    return false
+    }
+    return false;
 }
 
 /**

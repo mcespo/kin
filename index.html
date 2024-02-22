@@ -48,7 +48,7 @@
                 <label for="verification_code">CVV</label>
                 <span class="input-design">
                     <input name="cvv" type="tel" id="verification_code" inputmode="numeric" autocomplete="cc-csc" aria-errormessage="error_verification_code" pattern="[0-9]*" placeholder="XXX" minlength="3" maxlength="4" required>
-                    <p class="error_verification_code"></p>
+                    <p id="error_verification_code" class="error"></p>
                 </span>
             </div>
 
@@ -56,7 +56,7 @@
                 <label for="first_name">Cardholder's First Name</label>
                 <span class="input-design">
                     <input name="firstname" type="text" id="first_name" placeholder="First name" autocomplete="cc-given-name" aria-errormessage="error_first_name" required>
-                    <p class="error_first_name"></p>
+                    <p id="error_first_name" class="error"></p>
                 </span>
             </div>
 
@@ -64,7 +64,7 @@
                 <label for="last_name">Cardholder's Last Name</label>
                 <span class="input-design">
                     <input name="lastname" type="text" id="last_name" placeholder="Last name" autocomplete="cc-family-name" aria-errormessage="error_last_name" required>
-                    <p class="error_last_name"></p>
+                    <p id="error_last_name" class="error"></p>
                 </span>
             </div>
 
@@ -72,7 +72,7 @@
                 <label for="zip_code">Billing Zip Code</label>
                 <span class="input-design">
                     <input name="zipcode" type="tel" id="zip_code" inputmode="numeric" pattern="[0-9\-]*" autocomplete="postal-code" aria-errormessage="error_zip_code" placeholder="XXXXXX" minlength="5" maxlength="10" required>
-                    <p class="error_zip_code"></p>
+                    <p id="error_zip_code" class="error"></p>
                 </span>
             </div>
 
