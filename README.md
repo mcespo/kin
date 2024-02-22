@@ -18,10 +18,9 @@ When moving into CSS, I drafted out a sketch of what I expect to see on a mobile
 
 I also implemented a dark mode to the page. Please dont be alarmed if it catches you offguard. I just wanted to make things easy on the eyes for the user but note that I would not implement such a layout without consulting the creative team.
 
-#### Notes regarding CSS
----
-Since I did not use SCSS, LESS, nor Tailwind, I opted for CSS with native nesting. I did the project quickly and it may feel like th styles and classes are a little all over the place. My main intent was to live in one CSS document with a mobile first approach. I only modify styles as the larger viewports call for modifications. I also did not use any naming patterns such as BEM, as I did not want to spend too much time on this particular aspect of the challenge beyond honoring the visual fidelity of the designs.
----
+> [!Notes regarding CSS]
+> Since I did not use SCSS, LESS, nor Tailwind, I opted for CSS with native nesting. I did the project quickly and it may feel like th styles and classes are a little all over the place. My main intent was to live in one CSS document with a mobile first approach. I only modify styles as the larger viewports call for modifications. I also did not use any naming patterns such as BEM, as I did not want to spend too much time on this particular aspect of the challenge beyond honoring the visual fidelity of the designs.
+
 
 
 
