@@ -31,7 +31,7 @@
             <div class="credit-card">
                 <label for="credit_card_number">Credit Card Number</label>
                 <span class="input-design">
-                    <input name="creditcardnumber" id="credit_card_number" type="text" autocomplete="cc-number" inputmode="numeric" pattern="[0-9\s]*" placeholder="XXXX XXXX XXXX XXXX" minlength="15" maxlength="19" required>
+                    <input name="creditcardnumber" id="credit_card_number" type="text" autocomplete="cc-number" aria-errormessage="error_credit_card_number" inputmode="numeric" pattern="[0-9\s]*" placeholder="XXXX XXXX XXXX XXXX" minlength="15" maxlength="19" required>
                     <p id="error_credit_card_number" class="error"></p>
                 </span>
             </div>
@@ -39,7 +39,7 @@
             <div class="expiration">
                 <label for="expiration_date">Expiration Date</label>
                 <span class="input-design">
-                    <input name="expirationdate" type="text" id="expiration_date" autocomplete="cc-exp" inputmode="numeric" pattern="[0-9\/]*" placeholder="XX/XX" minlength="4" maxlength="5" required>
+                    <input name="expirationdate" type="text" id="expiration_date" autocomplete="cc-exp" aria-errormessage="error_expiration_date" inputmode="numeric" pattern="[0-9\/]*" placeholder="XX/XX" minlength="4" maxlength="5" required>
                     <p id="error_expiration_date" class="error"></p>
                 </span>
             </div>
@@ -47,7 +47,7 @@
             <div class="verification">
                 <label for="verification_code">CVV</label>
                 <span class="input-design">
-                    <input name="cvv" type="tel" id="verification_code" inputmode="numeric" autocomplete="cc-csc" pattern="[0-9]*" placeholder="XXX" minlength="3" maxlength="4" required>
+                    <input name="cvv" type="tel" id="verification_code" inputmode="numeric" autocomplete="cc-csc" aria-errormessage="error_verification_code" pattern="[0-9]*" placeholder="XXX" minlength="3" maxlength="4" required>
                     <p class="error_verification_code"></p>
                 </span>
             </div>
@@ -55,7 +55,7 @@
             <div class="first-name">
                 <label for="first_name">Cardholder's First Name</label>
                 <span class="input-design">
-                    <input name="firstname" type="text" id="first_name" placeholder="First name" autocomplete="cc-given-name" required>
+                    <input name="firstname" type="text" id="first_name" placeholder="First name" autocomplete="cc-given-name" aria-errormessage="error_first_name" required>
                     <p class="error_first_name"></p>
                 </span>
             </div>
@@ -63,7 +63,7 @@
             <div class="last-name">
                 <label for="last_name">Cardholder's Last Name</label>
                 <span class="input-design">
-                    <input name="lastname" type="text" id="last_name" placeholder="Last name" autocomplete="cc-family-name" required>
+                    <input name="lastname" type="text" id="last_name" placeholder="Last name" autocomplete="cc-family-name" aria-errormessage="error_last_name" required>
                     <p class="error_last_name"></p>
                 </span>
             </div>
@@ -71,7 +71,7 @@
             <div class="zip-code">
                 <label for="zip_code">Billing Zip Code</label>
                 <span class="input-design">
-                    <input name="zipcode" type="tel" id="zip_code" inputmode="numeric" pattern="[0-9\-]*" autocomplete="postal-code" placeholder="XXXXXX" minlength="5" maxlength="10" required>
+                    <input name="zipcode" type="tel" id="zip_code" inputmode="numeric" pattern="[0-9\-]*" autocomplete="postal-code" aria-errormessage="error_zip_code" placeholder="XXXXXX" minlength="5" maxlength="10" required>
                     <p class="error_zip_code"></p>
                 </span>
             </div>
