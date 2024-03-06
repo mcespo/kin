@@ -3,10 +3,8 @@
 * @param {string} inputValue string input value we will modify.
 * @return {string} return input value without spaces or special chars.
 */
-const sanitizeInputValue = inputValue => {
-    if(inputValue === '' || inputValue === undefined) return;
-    return inputValue.replace(/([^\w]+|\s+)/g, '');
-}
+const sanitizeInputValue = inputValue => inputValue.replace(/([^\w]+|\s+)/g, '');
+
 
 /**
 * Combine two strings together by a character or space such as a first and last name such as: "John Oliver".
