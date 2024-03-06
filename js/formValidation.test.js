@@ -41,12 +41,12 @@ test('it should ensure input value is a valid date entry', () => {
     expect(isValidDateEntry('Wed Yus 02 2024')).toBe(false);
 })
 
-test('it should ensure input value is a valid date entry', () => {
+test('it should ensure expiration is not over 6 or X years', () => {
     expect(isExpiryYearLessThanMaxYear(new Date('Wed Mar 02 2200'), 6)).toBe(false);
     expect(isExpiryYearLessThanMaxYear(new Date(), 6)).toBe(true);
 })
 
-test('it should ensure input value is a valid date entry', () => {
+test('it should ensure expiration date is always after "today"', () => {
     expect(isValidExpiryDate(new Date('Wed Mar 02 2200'))).toBe(true);
     expect(isValidExpiryDate(new Date('Wed Mar 02 1999'))).toBe(false);
 })
