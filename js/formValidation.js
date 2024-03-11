@@ -119,6 +119,11 @@ const isValidExpiryDate = value => {
 
 
 
+// ----------------------------------------------------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 /**
 * Process card number input. We validate the input, clean up, check length
@@ -128,28 +133,32 @@ const isValidExpiryDate = value => {
 * @return {boolean} return true/false if requirment is met.
 */
 const processCreditCardInput = creditCardInput => {
+    // credit card number variable
     let value;
 
-    // ensure the input value is not empty
+    // ensure the credit card input number is not empty
     if(!isValidInputValue(creditCardInput.value)) {
         errorMessageDisplay(creditCardInput, `Please input proper credit card format.`)
         return false;
     }
 
-    // clean input value and set as a date string
+    // clean credit card number from any special chars
     value = sanitizeInputValue(creditCardInput.value);
 
 
+    // ensure credit card number meets string length requirement
     if(!isValidMinMaxLenth(value, 15, 16)){
         errorMessageDisplay(creditCardInput, `Entry must be 15-16 characters long.`)
         return false;
     }
 
+    // ensure credit card numbers have matching first and last char
     if(!isFirstAndLastCharMatching(value)) {
         errorMessageDisplay(creditCardInput, `First and last character "${value.charAt(0)}" & "${value.at(-1)}" must match.`)
         return false;
     }
 
+    // ensure credit card number meets Luhn validation criteria
     if(!isLuhnValid(value)) {
         errorMessageDisplay(creditCardInput, `Invalid credit card. Please confirm number.`)
         return false;
@@ -166,45 +175,46 @@ const processCreditCardInput = creditCardInput => {
 * @return {boolean} return true/false if requirment is met.
 */
 const processCardExpirationInput = expirationNumberInput => {
+    // date variables
     let value;
     let dateValueString;
     let expiryDateValue;
 
 
-    // ensure the input value is not empty
+    // ensure the date input value is not empty
     if(!isValidInputValue(expirationNumberInput.value)) {
         errorMessageDisplay(expirationNumberInput, `Please input proper credit card format.`)
         return false;
     }
 
-    // clean input value and set as a date string
+    // clean date value from any special chars
     value = sanitizeInputValue(expirationNumberInput.value);
 
-    // ensure the value is meeting min max length requirements
+    // ensure the date value is meeting min max length requirements
     if(!isValidMinMaxLenth(value, 4, 4)) {
         errorMessageDisplay(expirationNumberInput, `Entry must be 4 characters long.`)
         return false;
     }
 
-    // plug in the input as a date string
+    // coerce date value as a new date string
     dateValueString = `20${value.slice(-2)}/${value.slice(0, 2)}/01`;
 
-    // ensure date string is valid date
+    // ensure date string is a valid date
     if(!isValidDateEntry(dateValueString)) {
         errorMessageDisplay(expirationNumberInput, `${value.slice(0, 2)}/${value.slice(-2)} is an invalid date.`);
         return false;
     }
 
-    // set input date string as proper date
+    // coerce date string as a new Date object
     expiryDateValue = new Date(dateValueString);
 
-    // ensure date value is valid expiry
+    // ensure Date object is valid expiry against the end of current month
     if(!isValidExpiryDate(expiryDateValue)) {
         errorMessageDisplay(expirationNumberInput, `${value.slice(0, 2)}/${value.slice(-2)} is an expired date.`);
         return false;
     }
 
-    // ensure date value is less than 6 years in future
+    // ensure Date object is less than "6" years in future as a credit card will not typically expire beyond 5 or so years from issue date.
     if(!isExpiryYearLessThanMaxYear(expiryDateValue, 6)) {
         errorMessageDisplay(expirationNumberInput, `Expiry date set too far in future.`);
         return false;
@@ -220,18 +230,19 @@ const processCardExpirationInput = expirationNumberInput => {
 * @return {boolean} return true/false if requirment is met.
 */
 const processCardVerificationInput = verificationInput => {
+    // CVV variable
     let value;
 
-    // ensure the input value is not empty
+    // ensure the CVV input number is not empty
     if(!isValidInputValue(verificationInput.value)) {
         errorMessageDisplay(verificationInput, `Please input proper credit card format.`)
         return false;
     }
 
-    // clean input value and set as a date string
+    // clean CVV value from any special chars
     value = sanitizeInputValue(verificationInput.value);
 
-
+    // ensure the CVV value is meeting min max length requirements
     if(!isValidMinMaxLenth(value, 3, 4)){
         errorMessageDisplay(verificationInput, `Entry must be 3-4 characters long.`)
         return false;
@@ -247,18 +258,19 @@ const processCardVerificationInput = verificationInput => {
 * @return {boolean} return true/false if requirment is met.
 */
 const processZipCodeInput = zipCodeInput => {
+    // zipcode variable
     let value;
 
-    // ensure the input value is not empty
+    // ensure the zipcode input number is not empty
     if(!isValidInputValue(zipCodeInput.value)) {
         errorMessageDisplay(zipCodeInput, `Please input proper credit card format.`)
         return false;
     }
 
-    // clean input value and set as a date string
+    // clean zipcode value from any special chars
     value = sanitizeInputValue(zipCodeInput.value);
 
-
+    // ensure the zipcode value is meeting min max length requirements
     if(!isValidMinMaxLenth(value, 5, 9)){
         errorMessageDisplay(zipCodeInput, `Entry must be 5-9 characters long.`)
         return false;
